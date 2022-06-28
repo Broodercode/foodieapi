@@ -33,8 +33,8 @@ def post_client_api():
     first_name = data.get('firstName')
     last_name = data.get('lastName')
     picture_url = data.get('pictureURL')
-    userCheck = run_query("SELECT username FROM clients WHERE username = ?" [username])
-    emailCheck = run_query("SELECT email FROM clients WHERE email = ?" [email])
+    userCheck = run_query("SELECT username FROM clients WHERE username = ?", [username])
+    emailCheck = run_query("SELECT email FROM clients WHERE email = ?", [email])
 
     if not email or not username or not password:
         return jsonify('Missing required field'), 422
@@ -50,6 +50,7 @@ def post_client_api():
 @app.delete('/api/client')
 def delete_client_api():
     return "whoops didn't finish"
+
 @app.patch('/api/client')
 def patch_client_api():
     data = request.json
