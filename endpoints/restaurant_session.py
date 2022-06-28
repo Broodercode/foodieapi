@@ -9,11 +9,10 @@ def restaurant_login():
     email = data.get('email')
     password = data.get('password')
     user_validated = pw_validate(email, password, 'restaurant')
-    print('user validated')
-    print(user_validated)
+
     token = new_restaurant_token(email)
     token_validate(token, 'restaurant')
-    print(token)
+
     return jsonify(token)
 
 @app.delete('/api/restaurant_login')

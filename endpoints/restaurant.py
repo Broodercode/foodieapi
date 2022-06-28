@@ -21,7 +21,7 @@ def get_restaurant_api():
     
 @app.post('/api/restaurant')
 def post_restaurant_api():
-    print('post restaurant reached')
+
     salt = bcrypt.gensalt()
     data = request.json
     email = data.get('email')
@@ -35,13 +35,13 @@ def post_restaurant_api():
     emailCheck = run_query("SELECT email FROM restaurant WHERE email = ?", [email])
     
     if not email or not password:
-        print('not function reached')
+
         return jsonify('Missing required field'), 422
     elif len(emailCheck) != 0:
-        print('email already exists')
+
         return jsonify('email already exists'), 422
     else:
-        print('restaurant query function reached')
+
         run_query("INSERT INTO restaurant (email, name, bio, address, city, phone_number, password) VALUES(?,?,?,?,?,?,?)", [email, name, address, bio, city, phone, password])
         return jsonify('added successfully')
     

@@ -33,27 +33,15 @@ def post_client_api():
     first_name = data.get('firstName')
     last_name = data.get('lastName')
     picture_url = data.get('pictureURL')
-    print('post function reached')
-    print(raw_pw)
-    print(password)
     userCheck = run_query("SELECT username FROM clients WHERE username = ?" [username])
     emailCheck = run_query("SELECT email FROM clients WHERE email = ?" [email])
-    
-    print('username')
-    print(username)
-    print('usercheck')
-    print(len(userCheck))
-    print(userCheck)
-    print(password)
+
     if not email or not username or not password:
-        print('not function reached')
         return jsonify('Missing required field'), 422
     elif len(userCheck) != 0 or len(emailCheck) != 0:
-        print('username or email already exists')
         return jsonify('username or email already exists'), 422
     
     else:
-        print('query function reached')
         
         run_query("INSERT INTO clients (email, username, password, first_name, last_name, picture_url) VALUES(?,?,?,?,?,?)", [email, username, password, first_name, last_name, picture_url])
         return jsonify('added successfully')
@@ -73,9 +61,9 @@ def patch_client_api():
     last_name = data.get('lastName')
     picture_url = data.get('pictureURL')
     token = data.get('token')
-    print('token validate incoming')
+
     token_state = token_validate(token)
-    print(token_state)
+
     if token_state:
         client_patcher(email, username, password, first_name, last_name, picture_url)
     else:

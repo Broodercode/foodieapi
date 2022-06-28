@@ -6,29 +6,28 @@ from db_helpers import run_query
 def client_patcher(email, username, password, first_name, last_name, picture_url):
     updated = ''
     if email != None:
-        print('email query reached')
+        
         run_query("UPDATE clients SET email= ? WHERE username= ?", [email, username])
         updated += 'email '
     if password != None:
         salt = bcrypt.gensalt()
         hash_pass = bcrypt.hashpw(password.encode(), salt)
-        print('password query reached')
+  
         run_query("UPDATE clients SET password= ? WHERE username=?", [hash_pass, username])
         updated += 'password '
     if first_name != None:
-        print('first_name query reached')
+
         run_query("UPDATE clients SET first_name= ? WHERE username=?", [first_name, username])
         updated += 'first name '
     if last_name != None:
-        print('last_name query reached')
+
         run_query("UPDATE clients SET last_name= ? WHERE username=?", [last_name, username])
         updated += 'last name '
     if picture_url != None:
-        print('picture_url query reached')
+
         run_query("UPDATE clients SET picture_url= ? WHERE username=?", [picture_url, username])
         updated += 'image '
     updated += 'updated'
-    print(updated)
     return updated
 
 def menu_patcher(menuId, name, description, price, imageUrl):
@@ -56,41 +55,32 @@ def restaurant_patcher(name, address, banner, bio, city, email, phone, profile, 
     if restaurantId == None:
         return jsonify('Something went wrong')
     if email != None:
-        print('email query reached')
         run_query("UPDATE clients SET email= ? WHERE username= ?", [email, restaurantId])
         updated += 'email '
     if password != None:
         salt = bcrypt.gensalt()
         hash_pass = bcrypt.hashpw(password.encode(), salt)
-        print('password query reac.hed')
         run_query("UPDATE clients SET password= ? WHERE restaurantId=?", [hash_pass, restaurantId])
         updated += 'password '
     if name != None:
-        print('name query reached')
         run_query("UPDATE clients SET name= ? WHERE restaurantId=?", [name, restaurantId])
         updated += 'name '
     if address != None:
-        print('address query reached')
         run_query("UPDATE clients SET address= ? WHERE restaurantId=?", [address, restaurantId])
         updated += 'address '
     if banner != None:
-        print('banner query reached')
         run_query("UPDATE clients SET banner_url= ? WHERE restaurantId=?", [banner, restaurantId])
         updated += 'banner '
     if bio != None:
-        print('bio query reached')
         run_query("UPDATE clients SET bio= ? WHERE restaurantId=?", [bio, restaurantId])
         updated += 'bio '
     if city != None:
-        print('city query reached')
         run_query("UPDATE clients SET city= ? WHERE restaurantId=?", [city, restaurantId])
         updated += 'city '
     if phone != None:
-        print('phone query reached')
         run_query("UPDATE clients SET phone_number= ? WHERE restaurantId=?", [phone, restaurantId])
         updated += 'phone '
     if profile != None:
-        print('profile query reached')
         run_query("UPDATE clients SET profile_url= ? WHERE restaurantId=?", [profile, restaurantId])
         updated += 'profile '
     updated += 'updated'

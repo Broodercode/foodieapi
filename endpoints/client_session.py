@@ -11,11 +11,9 @@ def client_login():
     username = data.get('username')
     password = data.get('password')
     user_validated = pw_validate(username, password)
-    print('user validated')
-    print(user_validated)
+
     token = new_client_token(username)
     token_validate(token, 'client')
-    print(token)
     return jsonify(token)
 
 @app.delete('/api/client_login')
