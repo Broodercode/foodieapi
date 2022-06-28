@@ -49,8 +49,7 @@ def post_client_api():
 
 @app.delete('/api/client')
 def delete_client_api():
-    print('delete client')
-
+    return "whoops didn't finish"
 @app.patch('/api/client')
 def patch_client_api():
     data = request.json
